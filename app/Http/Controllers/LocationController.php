@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class TheatresController extends Controller
+use App\Location;
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,9 @@ class TheatresController extends Controller
      */
     public function index()
     {
-        
+        $locationModel = new Location();
+        $alllocations = $locationModel::all();
+        return view('locations.index')->with('locations' , $alllocations);
     }
 
     /**

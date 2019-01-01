@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Ticket;
 class TicketController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $ticketModel = new Ticket();
+        $alltickets = $ticketModel::all();
+        return view('tickets.index')->with('tickets' , $alltickets);
     }
 
     /**
