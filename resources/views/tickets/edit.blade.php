@@ -50,37 +50,32 @@
     </style>
 </head>
 <body>
-<h1>INDEX2</h1>
-<table class="table-bordered">
-    <thead class="thead-dark">
-    <tr>
-        <th>ID</th>
-        <th>Ticket Type</th>
-        <th colspan="3">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach($tickets as $key => $value)
-        <tr>
-            <td>{{$value->id}}</td>
-            <td>{{$value->ticketType}}</td>
-            <td>
-                <a class="btn btn-primary btn-red" href="{{ route('tickets.show', $value->id) }}" method="POST">Show</a>
-            </td>
-            <td>
-                <a class="btn btn-small btn-info" href="{{ URL::to('tickets/' . $value->id . '/edit') }}">Edit</a>
-            </td>
-            <td>
-                <form action="{{action('TicketController@destroy', $value->id )}}" method="post">
-                    {{csrf_field()}}
-                    <input name="_method" type="hidden" value="DELETE">
-                    <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
+<h1>Edit</h1>
+<div class="panel-body">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form method="post" action="{{url('/tickets')}}">
+        <div class="form-group row">
+            {{csrf_field()}}
+            <label for="ticketType" class="col-sm-2 col-form-label col-form-label-lg">Ticket type</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-lg" id="lgFormGroupInput5" placeholder="Ticket type:" name="ticketType">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-2"></div>
+            <button type="submit" class="btn-outline-dark">Update</button>
+        </div>
+    </form>
+</div>
+
 
 </body>
 </html>

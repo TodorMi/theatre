@@ -118,6 +118,6 @@ class TheatreController extends Controller
         $theatre = Theatre::find($id);
         $theatre->delete();
 
-        return redirect('theatres')->with('success','Theatre has been deleted');
+        return redirect('theatres')->with('success','Theatre has been deleted!');
     }
 }

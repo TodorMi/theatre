@@ -50,37 +50,28 @@
     </style>
 </head>
 <body>
-<h1>INDEX2</h1>
-<table class="table-bordered">
-    <thead class="thead-dark">
+<h1>INDEX</h1>
+<div class="panel-body">
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Show Tickets</h2>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-primary" href="{{ route('tickets.index') }}">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-hover" style="width: 70%">
     <tr>
-        <th>ID</th>
-        <th>Ticket Type</th>
-        <th colspan="3">Actions</th>
+        <td width="20%">
+            <strong>Ticket type:</strong>
+        </td>
+        <td>
+            {{ $ticket->ticketType }}
+        </td>
     </tr>
-    </thead>
-    <tbody>
-    @foreach($tickets as $key => $value)
-        <tr>
-            <td>{{$value->id}}</td>
-            <td>{{$value->ticketType}}</td>
-            <td>
-                <a class="btn btn-primary btn-red" href="{{ route('tickets.show', $value->id) }}" method="POST">Show</a>
-            </td>
-            <td>
-                <a class="btn btn-small btn-info" href="{{ URL::to('tickets/' . $value->id . '/edit') }}">Edit</a>
-            </td>
-            <td>
-                <form action="{{action('TicketController@destroy', $value->id )}}" method="post">
-                    {{csrf_field()}}
-                    <input name="_method" type="hidden" value="DELETE">
-                    <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
 </table>
-
 </body>
 </html>

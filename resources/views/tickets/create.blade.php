@@ -61,29 +61,7 @@
                         </ul>
                 </div>
 @endif
-
-                <form method="post" action="{{url('/theatres')}}">
-                        <div class="form-group row">
-                                {{csrf_field()}}
-                                <label for="theatreName" class="col-sm-2 col-form-label col-form-label-lg">Theatre Name</label>
-                                <div class="col-sm-10">
-                                        <input type="text" class="form-control form-control-lg" id="lgFormGroupInput1" placeholder="Enter name:" name="theatreName">
-                                </div>
-                        </div>
-                        <div class="form-group row">
-                                {{csrf_field()}}
-                                <label for="Date" class="col-sm-2 col-form-label col-form-label-lg">Date</label>
-                                <div class="col-sm-10">
-                                        <input type="text" class="form-control form-control-lg" id="lgFormGroupInput2" placeholder="Date" name="conDate">
-                                </div>
-                        </div>
-                        <div class="form-group row">
-                                {{csrf_field()}}
-                                <label for="Location" class="col-sm-2 col-form-label col-form-label-lg">Location</label>
-                                <div class="col-sm-10">
-                                        <input type="text" class="form-control form-control-lg" id="lgFormGroupInput6" placeholder="Location" name="location">
-                                </div>
-                        </div>
+                <form method="post" action="{{url('/tickets')}}">
                         <div class="form-group row">
                                 {{csrf_field()}}
                                 <label for="ticketType" class="col-sm-2 col-form-label col-form-label-lg">Ticket type</label>
@@ -95,7 +73,7 @@
                                 <div class="col-md-2"></div>
                                 <input type="submit" class="btn btn-primary">
                                 <div class="col-xl-1"></div>
-                                <a class="btn btn-primary" href="{{ route('theatres.index') }}"> Back</a>
+                                <a class="btn btn-primary" href="{{ route('tickets.index') }}">Back</a>
                         </div>
                 </form>
 </div>

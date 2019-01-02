@@ -25,7 +25,7 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        return view('tickets.create');
     }
 
     /**
@@ -36,7 +36,22 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'ticketType' => 'bail||required|min:2|max:255',
+        );
+
+        $validator = Validator::make($request->all(),$rules);
+
+        if($validator->fails()) {
+            return redirect('tickets/create')->WithErrors($validator);
+        } else {
+            $ticket = new Theatre([
+                'ticketType' => $request->get('ticketType'),
+            ]);
+
+            $ticket->save();
+            return redirect('tickets');
+        }
     }
 
     /**
@@ -47,7 +62,8 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        //
+        $ticket = Ticket::find($id);
+        return view('tickets.show',compact('ticket', 'id'));
     }
 
     /**
@@ -58,7 +74,8 @@ class TicketController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ticket = Ticket::find($id);
+        return view('tickets.edit',compact('ticket', 'id'));
     }
 
     /**
@@ -70,7 +87,10 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ticket = Ticket::find($id);
+        $ticket->ticketType = $request->get('ticketType');
+        $ticket->save();
+        return redirect('/tickets')->with('success', 'Successfully completed!');
     }
 
     /**
@@ -81,6 +101,8 @@ class TicketController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ticket = Ticket::find($id);
+        $ticket->delete();
+        return redirect('tickets')->with('success','Theatre has been deleted!');
     }
 }

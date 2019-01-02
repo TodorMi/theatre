@@ -61,7 +61,6 @@
             </ul>
         </div>
     @endif
-
     <form method="post" action="{{url('/theatres')}}">
         <div class="form-group row">
             {{csrf_field()}}

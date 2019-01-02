@@ -51,6 +51,10 @@
 </head>
 <body>
 <h1>INDEX</h1>
+<div class="panel-heading">
+    <a class="btn btn-small btn-info" href="{{ URL::to('theatres/create') }}">Create a Theatre</a>
+</div>
+<br>
 <table class="table-bordered">
     <thead class="thead-dark">
     <tr>
@@ -74,7 +78,7 @@
                 <a class="btn btn-primary btn-red" href="{{ route('theatres.show', $value->id) }}" method="POST">Show</a>
             </td>
             <td>
-                <a class="btn btn-small btn-info" href="{{ URL::to('theatres/' . $value->id . '/edit') }}">Edit subject</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('theatres/' . $value->id . '/edit') }}">Edit</a>
             </td>
             <td>
                 <form action="{{action('TheatreController@destroy', $value->id )}}" method="post">
