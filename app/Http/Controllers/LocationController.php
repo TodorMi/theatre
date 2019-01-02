@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Location;
+use Illuminate\Support\Facades\Validator;
+
 class LocationController extends Controller
 {
     /**
@@ -25,7 +27,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+        return view('locations.create');
     }
 
     /**
@@ -36,7 +38,26 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'locationName' => 'bail||required|min:2|max:255',
+            'location' => 'required|min:1|max:128',
+            'city' => 'required|min:2|max:128',
+        );
+
+        $validator = Validator::make($request->all(),$rules);
+
+        if($validator->fails()) {
+            return redirect('locations/create')->WithErrors($validator);
+        } else {
+            $location = new Location([
+                'locationName' => $request->get('locationName'),
+                'location' => $request->get('location'),
+                'city' => $request->get('city'),
+            ]);
+
+            $location->save();
+            return redirect('locations');
+        }
     }
 
     /**
@@ -47,7 +68,9 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        //
+        $location = Location::find($id);
+
+        return view('locations.show',compact('location', 'id'));
     }
 
     /**
@@ -58,7 +81,9 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $location = Location::find($id);
+
+        return view('locations.edit',compact('location', 'id'));
     }
 
     /**
@@ -70,7 +95,12 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $location = Location::find($id);
+        $location->locationName = $request->get('locationName');
+        $location->location = $request->get('location');
+        $location->city = $request->get('city');
+        $location->save();
+        return redirect('/locations')->with('success', 'Successfully completed!');
     }
 
     /**
@@ -81,6 +111,9 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $location = Location::find($id);
+        $location->delete();
+
+        return redirect('locations')->with('success','Location has been deleted!');
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ticket;
+use Illuminate\Support\Facades\Validator;
+
 class TicketController extends Controller
 {
     /**
@@ -103,6 +105,6 @@ class TicketController extends Controller
     {
         $ticket = Ticket::find($id);
         $ticket->delete();
-        return redirect('tickets')->with('success','Theatre has been deleted!');
+        return redirect('tickets')->with('success','Ticket has been deleted!');
     }
 }

@@ -51,6 +51,10 @@
 </head>
 <body>
 <h1>INDEX</h1>
+<div class="panel-heading">
+    <a class="btn btn-small btn-info" href="{{ URL::to('locations/create') }}">Create a Location</a>
+</div>
+<br>
 <table class="table-bordered">
     <thead class="thead-dark">
     <tr>
@@ -58,6 +62,7 @@
         <th>Location Name</th>
         <th>Location</th>
         <th>City</th>
+        <th colspan="3">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -67,6 +72,19 @@
             <td>{{$value->locationName}}</td>
             <td>{{$value->location}}</td>
             <td>{{$value->city}}</td>
+            <td>
+                <a class="btn btn-primary btn-red" href="{{ route('locations.show', $value->id) }}" method="POST">Show</a>
+            </td>
+            <td>
+                <a class="btn btn-small btn-info" href="{{ URL::to('locations/' . $value->id . '/edit') }}">Edit</a>
+            </td>
+            <td>
+                <form action="{{action('LocationController@destroy', $value->id )}}" method="post">
+                    {{csrf_field()}}
+                    <input name="_method" type="hidden" value="DELETE">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
     @endforeach
     </tbody>
