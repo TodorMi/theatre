@@ -55,6 +55,18 @@
     <a class="btn btn-small btn-info" href="{{ URL::to('theatres/create') }}">Create a Theatre</a>
 </div>
 <br>
+<form action="{{action("SearchController@searchTheatres")}}" method="POST" role="search">
+    {{ csrf_field() }}
+    <div class="input-group">
+        <input type="text" class="form-control" name="search"
+               placeholder="Search a theatre"> <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search">Search</span>
+            </button>
+        </span>
+    </div>
+</form>
+<br>
 <table class="table-bordered">
     <thead class="thead-dark">
     <tr>

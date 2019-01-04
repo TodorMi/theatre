@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use App\Theatre;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Controller;
 
 class TheatreController extends Controller
 {
