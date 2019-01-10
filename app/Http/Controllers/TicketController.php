@@ -47,7 +47,7 @@ class TicketController extends Controller
         if($validator->fails()) {
             return redirect('tickets/create')->WithErrors($validator);
         } else {
-            $ticket = new Theatre([
+            $ticket = new Ticket([
                 'ticketType' => $request->get('ticketType'),
             ]);
 

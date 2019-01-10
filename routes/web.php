@@ -22,7 +22,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('theatres','TheatreController');
 Route::resource('locations','LocationController');
 Route::resource('tickets','TicketController');
-
+Route::resource('images', 'ImagesController');
 
 Route::post('theatres.search', 'SearchController@searchTheatres');
 Route::post('locations.search', 'SearchController@searchLocations');
+
+
+

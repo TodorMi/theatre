@@ -46,7 +46,6 @@
             text-decoration: none;
             text-transform: uppercase;
         }
-
     </style>
 </head>
 <body>
@@ -67,6 +66,11 @@
     </div>
 </form>
 <br>
+<td>
+    @if (Auth::check())
+        <a class="btn btn-small btn-info" href="{{ URL::to('images') }}"> <span>Images</span></a>
+    @endif
+</td>
 <table class="table-bordered">
     <thead class="thead-dark">
     <tr>
@@ -75,7 +79,7 @@
         <th>Date</th>
         <th>Location</th>
         <th>Ticket Type</th>
-        <th colspan="3">Actions</th>
+        <th colspan="4">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -99,6 +103,7 @@
                     <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
             </td>
+
         </tr>
     @endforeach
     </tbody>
