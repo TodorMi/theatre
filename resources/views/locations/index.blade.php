@@ -51,9 +51,11 @@
 </head>
 <body>
 <h1>INDEX</h1>
+@if (Auth::check())
 <div class="panel-heading">
     <a class="btn btn-small btn-info" href="{{ URL::to('locations/create') }}">Create a Location</a>
 </div>
+@endif
 <br>
 <form action="{{action("SearchController@searchLocations")}}" method="POST" role="search">
     {{ csrf_field() }}
@@ -87,6 +89,7 @@
             <td>
                 <a class="btn btn-primary btn-red" href="{{ route('locations.show', $value->id) }}" method="POST">Show</a>
             </td>
+            @if (Auth::check())
             <td>
                 <a class="btn btn-small btn-info" href="{{ URL::to('locations/' . $value->id . '/edit') }}">Edit</a>
             </td>
@@ -97,6 +100,7 @@
                     <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
             </td>
+                @endif
         </tr>
     @endforeach
     </tbody>

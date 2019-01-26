@@ -88,9 +88,7 @@
                     <a href="/theatres">Theatres</a>
                     <a href="/locations">Locations</a>
                     <a href="/tickets">Tickets</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://github.com/TodorMi/theatre">GitHub</a>
                 </div>
             </div>
         </div>

@@ -51,9 +51,11 @@
 </head>
 <body>
 <h1>INDEX2</h1>
+@if (Auth::check())
 <div class="panel-heading">
     <a class="btn btn-small btn-info" href="{{ URL::to('tickets/create') }}">Create a Ticket type</a>
 </div>
+@endif
 <br>
 <table class="table-bordered">
     <thead class="thead-dark">
@@ -71,6 +73,7 @@
             <td>
                 <a class="btn btn-primary btn-red" href="{{ route('tickets.show', $value->id) }}" method="POST">Show</a>
             </td>
+            @if (Auth::check())
             <td>
                 <a class="btn btn-small btn-info" href="{{ URL::to('tickets/' . $value->id . '/edit') }}">Edit</a>
             </td>
@@ -81,6 +84,7 @@
                     <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
             </td>
+                @endif
         </tr>
     @endforeach
     </tbody>

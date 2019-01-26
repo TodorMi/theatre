@@ -50,9 +50,11 @@
 </head>
 <body>
 <h1>INDEX</h1>
+@if (Auth::check())
 <div class="panel-heading">
     <a class="btn btn-small btn-info" href="{{ URL::to('theatres/create') }}">Create a Theatre</a>
 </div>
+@endif
 <br>
 <form action="{{action("SearchController@searchTheatres")}}" method="POST" role="search">
     {{ csrf_field() }}
@@ -93,9 +95,11 @@
             <td>
                 <a class="btn btn-primary btn-red" href="{{ route('theatres.show', $value->id) }}" method="POST">Show</a>
             </td>
+            @if (Auth::check())
             <td>
                 <a class="btn btn-small btn-info" href="{{ URL::to('theatres/' . $value->id . '/edit') }}">Edit</a>
             </td>
+
             <td>
                 <form action="{{action('TheatreController@destroy', $value->id )}}" method="post">
                     {{csrf_field()}}
@@ -103,7 +107,7 @@
                     <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
             </td>
-
+            @endif
         </tr>
     @endforeach
     </tbody>
