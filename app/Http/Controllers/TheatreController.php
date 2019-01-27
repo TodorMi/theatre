@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ticket;
 use Illuminate\Http\Request;
 use App\Theatre;
 use Illuminate\Support\Facades\Validator;
@@ -27,7 +28,11 @@ class TheatreController extends Controller
      */
     public function create()
     {
-        return view('theatres.create');
+        //$ticketsModel = new Ticket();
+        //$allTickets = $ticketsModel::all()->pluck('ticketType', 'id');
+        //$allTickets = ['' => 'Select Ticket'] + $allTickets->all();
+
+        return view('theatres.create');//->with('allTickets', $allTickets);
     }
 
     /**
@@ -42,7 +47,8 @@ class TheatreController extends Controller
             'theatreName' => 'bail||required|min:2|max:255',
             'conDate' => 'required',
             'location' => 'required|min:1|max:128',
-            'ticketType' => 'required|min:2|max:128',
+            'ticketType' => 'nullable',
+            //'ticket_id' => 'required',
         );
 
         $validator = Validator::make($request->all(),$rules);
@@ -55,6 +61,7 @@ class TheatreController extends Controller
                 'conDate' => $request->get('conDate'),
                 'location' => $request->get('location'),
                 'ticketType' => $request->get('ticketType'),
+                //'ticket_id' => $request->get('ticket_id'),
             ]);
 
             $theatre->save();
@@ -101,6 +108,7 @@ class TheatreController extends Controller
         $theatre->conDate = $request->get('conDate');
         $theatre->location = $request->get('location');
         $theatre->ticketType = $request->get('ticketType');
+       // $theatre->ticket_id = $request->get('ticket_id');
         $theatre->save();
         return redirect('/theatres')->with('success', 'Successfully completed!');
     }

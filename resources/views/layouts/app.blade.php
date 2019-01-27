@@ -15,9 +15,31 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        body{
+            color:#000000;
+            margin-left:0;
+            margin-right:0;
+            margin-top:0;
+            margin-bottom:0;
+            margin-width:0;
+            margin-height:0;
+            background-color: #feffe9;
+
+        }
+        td, tr, th{
+            background-color: #ffffff;
+            padding: 5px;
+        }
+.navbar{
+    background-color: #ded1a7;
+}
+    </style>
 </head>
 <body>
 <div id="app">
@@ -26,6 +48,9 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
+            <a class="navbar-brand" href="/theatres">Theatres</a>
+            <a class="navbar-brand" href="/locations">Locations</a>
+            <a class="navbar-brand" href="/tickets">Tickets</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>

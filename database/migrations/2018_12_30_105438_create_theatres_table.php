@@ -18,7 +18,7 @@ class CreateTheatresTable extends Migration
             $table->string('theatreName','120');
             $table->date('conDate');
             $table->string('location','120');
-            $table->string('ticketType','120');
+            $table->string('ticketType','120')->nullable();
             $table->timestamps();
         });
     }
