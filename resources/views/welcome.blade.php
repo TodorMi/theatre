@@ -78,12 +78,10 @@
                     @endauth
                 </div>
             @endif
-
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
                 <div class="links">
                     <a href="/theatres">Theatres</a>
                     <a href="/locations">Locations</a>

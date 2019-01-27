@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Images;
+use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\ImageUpload;
 class ImagesController extends Controller
@@ -87,6 +88,9 @@ class ImagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $image = Images::find($id);
+        $image->delete();
+
+        return redirect('images')->with('success','Image has been deleted!');
     }
 }

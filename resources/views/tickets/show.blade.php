@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('content')
         <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -18,26 +19,6 @@
             margin: 0;
         }
 
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
         .links > a {
             padding: 0 25px;
             font-size: 13px;
@@ -50,7 +31,7 @@
     </style>
 </head>
 <body>
-<h1>INDEX</h1>
+<h1>Show tickets</h1>
 <div class="panel-body">
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -75,3 +56,4 @@
 </table>
 </body>
 </html>
+@endsection

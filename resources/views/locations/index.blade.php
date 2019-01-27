@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('content')
         <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -18,26 +19,6 @@
             margin: 0;
         }
 
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
         .links > a {
             padding: 0 25px;
             font-size: 13px;
@@ -50,7 +31,7 @@
     </style>
 </head>
 <body>
-<h1>INDEX</h1>
+<h1>Locations</h1><br>
 @if (Auth::check())
 <div class="panel-heading">
     <a class="btn btn-small btn-info" href="{{ URL::to('locations/create') }}">Create a Location</a>
@@ -59,7 +40,7 @@
 <br>
 <form action="{{action("SearchController@searchLocations")}}" method="POST" role="search">
     {{ csrf_field() }}
-    <div class="input-group">
+    <div class="input-group" style="max-width: 35%;">
         <input type="text" class="form-control" name="search"
                placeholder="Search a locations"> <span class="input-group-btn">
             <button type="submit" class="btn btn-default">
@@ -87,11 +68,11 @@
             <td>{{$value->location}}</td>
             <td>{{$value->city}}</td>
             <td>
-                <a class="btn btn-primary btn-red" href="{{ route('locations.show', $value->id) }}" method="POST">Show</a>
+                <a class="btn btn-primary" href="{{ route('locations.show', $value->id) }}" method="POST">Show</a>
             </td>
             @if (Auth::check())
             <td>
-                <a class="btn btn-small btn-info" href="{{ URL::to('locations/' . $value->id . '/edit') }}">Edit</a>
+                <a class="btn btn-small btn-warning" href="{{ URL::to('locations/' . $value->id . '/edit') }}">Edit</a>
             </td>
             <td>
                 <form action="{{action('LocationController@destroy', $value->id )}}" method="post">
@@ -105,6 +86,6 @@
     @endforeach
     </tbody>
 </table>
-
 </body>
 </html>
+@endsection

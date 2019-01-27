@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('content')
         <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -10,46 +11,9 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
-    <!-- Styles -->
-    <style>
-        html, body {
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .links > a {
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-    </style>
 </head>
 <body>
-<h1>INDEX</h1>
+<h1>Предстоящи събития</h1><br>
 @if (Auth::check())
 <div class="panel-heading">
     <a class="btn btn-small btn-info" href="{{ URL::to('theatres/create') }}">Create a Theatre</a>
@@ -58,9 +22,8 @@
 <br>
 <form action="{{action("SearchController@searchTheatres")}}" method="POST" role="search">
     {{ csrf_field() }}
-    <div class="input-group">
-        <input type="text" class="form-control" name="search"
-               placeholder="Search a theatre"> <span class="input-group-btn">
+    <div class="input-group" style="max-width: 35%;">
+        <input type="text" class="form-control" name="search" placeholder="Search a theatre"> <span class="input-group-btn">
             <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search">Search</span>
             </button>
@@ -68,11 +31,6 @@
     </div>
 </form>
 <br>
-<td>
-    @if (Auth::check())
-        <a class="btn btn-small btn-info" href="{{ URL::to('images') }}"> <span>Images</span></a>
-    @endif
-</td>
 <table class="table-bordered">
     <thead class="thead-dark">
     <tr>
@@ -81,7 +39,7 @@
         <th>Date</th>
         <th>Location</th>
         <th>Ticket Type</th>
-        <th colspan="4">Actions</th>
+        <th colspan="3">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -93,13 +51,12 @@
             <td>{{$value->location}}</td>
             <td>{{$value->ticketType}}</td>
             <td>
-                <a class="btn btn-primary btn-red" href="{{ route('theatres.show', $value->id) }}" method="POST">Show</a>
+                <a class="btn btn-primary btn-primary" href="{{ route('theatres.show', $value->id) }}" method="POST">Show</a>
             </td>
             @if (Auth::check())
             <td>
-                <a class="btn btn-small btn-info" href="{{ URL::to('theatres/' . $value->id . '/edit') }}">Edit</a>
+                <a class="btn btn-small btn-warning" href="{{ URL::to('theatres/' . $value->id . '/edit') }}">Edit</a>
             </td>
-
             <td>
                 <form action="{{action('TheatreController@destroy', $value->id )}}" method="post">
                     {{csrf_field()}}
@@ -111,7 +68,12 @@
         </tr>
     @endforeach
     </tbody>
-</table>
-
+</table><br>
+<td>
+    @if (Auth::check())
+        <a class="btn btn-small btn-info" href="{{ URL::to('images') }}"> <span>Images</span></a>
+    @endif
+</td>
 </body>
 </html>
+@endsection
